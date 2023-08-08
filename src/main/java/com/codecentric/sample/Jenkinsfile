@@ -11,10 +11,14 @@ pipeline {
                 echo "M2_HOME = /opt/maven"
             }
         }
+        stage('Checkout'){
+            steps{
+                git branch: 'master', url: 'https://github.com/Arpakathy/java-junit-sample'
+            }
+        }
         stage('Build') {
             steps {
-
-                sh 'mvn -B -DskipTests clean package'
+               sh 'mvn -B -DskipTests clean package'
             }
         }
      }
