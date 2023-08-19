@@ -11,16 +11,12 @@ pipeline {
                 echo "M2_HOME = /opt/maven"
             }
         }
-        stage('Checkout'){
-            steps{
-                git branch: 'master', url: 'https://github.com/Arpakathy/java-junit-sample'
-            }
-        }
         stage('Build') {
             steps {
                 dir("/var/lib/jenkins/workspace/JUnit-test-project/src/main/java/com/codecentric/sample") {
                 sh 'mvn -B -DskipTests clean package'
                 }
+            }
         }
      }
     post {
@@ -28,8 +24,7 @@ pipeline {
           junit(
         allowEmptyResults: true,
         testResults: '*/test-reports/.xml'
-        )
-       }
-     } 
-  }
-}    
+      )
+      }
+   } 
+}
