@@ -13,9 +13,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                dir("/var/lib/jenkins/workspace/JUnit-test-project/src/main/java/com/codecentric/sample") {
                 sh 'mvn -B -DskipTests clean package'
-                }
             }
         }
      }
